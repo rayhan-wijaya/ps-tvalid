@@ -91,3 +91,14 @@ exec_slave_db() {
         -P $slave_password
         -e "$2"
 }
+
+from_date=$2
+to_date=$3
+
+count_by_date_query=\
+"SELECT
+    created_date,
+    count(*)
+FROM transactions
+WHERE created_date BETWEEN $from_date AND $to_date
+GROUP BY created_date;"
