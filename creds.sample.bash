@@ -9,7 +9,9 @@ prod_db=''
 prod_host=''
 prod_port=''
 
-slave_user=''
-slave_pass=''
-slave_db=''
-slave_port=''
+# in this exact order: user & pass & db & host & port 
+#
+slaves=( \
+    '... & ... & ... & ... & ...' \
+    '... & ... & ... & ... & ...' \
+)
