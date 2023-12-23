@@ -27,6 +27,6 @@ validate_creds() {
 validate_creds_res="$(validate_creds)"
 if [ "$validate_creds_res" != "$validate_creds_ok" ]
 then
-    echo "...creds.bash status: "
+    echo "...creds.bash status: $validate_creds_res"
     exit 1
 fi
