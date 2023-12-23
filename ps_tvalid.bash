@@ -6,6 +6,12 @@ hash mariadb 2>/dev/null || {
 }
 
 creds_path=$1
+if [ "$creds_path" = '' ]
+then
+    echo '...please provide $creds_path as $1--first argument'
+    exit 1
+fi
+
 . "$creds_path"
 
 validate_creds_ok='ok!'
