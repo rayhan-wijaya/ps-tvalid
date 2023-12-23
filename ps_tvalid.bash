@@ -51,3 +51,43 @@ exec_prod_db() {
         -P $prod_password
         -e "$1"
 }
+
+# $1: slave_db string from creds.bash
+# $2: query
+exec_slave_db() {
+    slave_user=''
+    slave_pass=''
+    slave_db=''
+    slave_host=''
+    slave_port=''
+
+    IFS=' & ' read -ra slave_creds <<< "$1"
+    for i in "${!slave_creds[@]}"
+    do
+        case "$i" in
+            "0")
+                slave_user=${slave_creds[$i]}
+                ;;
+            "1")
+                slave_pass=${slave_creds[$i]}
+                ;;
+            "2")
+                slave_db=${slave_creds[$i]}
+                ;;
+            "3")
+                slave_host=${slave_creds[$i]}
+                ;;
+            "4")
+                slave_port=${slave_creds[$i]}
+                ;;
+        esac
+    done
+
+    mariadb
+        -u $slave_user
+        -p"$slave_pass"
+        -d $slave_db
+        -h $slave_host
+        -P $slave_password
+        -e "$2"
+}
