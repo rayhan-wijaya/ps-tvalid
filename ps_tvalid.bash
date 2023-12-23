@@ -41,3 +41,13 @@ if [ "$validate_creds_res" != "$validate_creds_ok" ]
 then
     exit 1
 fi
+
+# $1: user
+# $2: pass
+# $3: db
+# $4: host
+# $5: port
+# $6: query
+exec_db() {
+    mariadb -u $1 -p"$2" -d $3 -h $4 -P $5 -e "$6"
+}
