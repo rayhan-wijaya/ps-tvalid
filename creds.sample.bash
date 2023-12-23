@@ -6,6 +6,7 @@
 prod_user=''
 prod_pass=''
 prod_db=''
+prod_host=''
 prod_port=''
 
 slave_user=''
