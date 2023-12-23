@@ -11,6 +11,11 @@ then
     echo '...please provide $creds_path as $1--first argument'
     exit 1
 fi
+if ! test -f "$creds_path"
+then
+    echo '...please provide $creds_path as a file that actually exists'
+    exit 1
+fi
 
 . "$creds_path"
 
