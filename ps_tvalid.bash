@@ -95,6 +95,9 @@ exec_slave_db() {
 from_date=$2
 to_date=$3
 
+out_file=$4
+> $out_file
+
 if [ "$from_date" = '' ] || [ "$to_date" = '' ]
 then
     >&2 echo '...please pass in $from_date and $to_date as $2 and $3'
@@ -112,13 +115,17 @@ GROUP BY created_date;"
 
     prod_res=$(exec_prod_db "$count_by_date_query")
 
+    echo "Production" >> $out_file
+    echo "----------" >> $out_file
+
+    echo $prod_res >> $out_file
+    echo "" >> $out_file
+
     if [ "$?" = '1' ]
     then
         >&2 echo '...failed to execute prod query'
         return 1
     fi
-
-    slave_res=()
 
     for slave_i in "${!slaves[@]}"
     do
@@ -130,7 +137,11 @@ GROUP BY created_date;"
             return 1
         fi
 
-        slave_res+=("$res")
+        echo "Slave $slave_i" >> $out_file
+        echo "-------" >> $out_file
+
+        echo $res >> $out_file
+        echo "" >> $out_file
     done
 }
 
