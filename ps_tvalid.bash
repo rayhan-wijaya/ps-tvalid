@@ -95,6 +95,12 @@ exec_slave_db() {
 from_date=$2
 to_date=$3
 
+if [ "$from_date" = '' ] || [ "$to_date" = '' ]
+then
+    >&2 echo '...please pass in $from_date and $to_date as $2 and $3'
+    exit 1
+fi
+
 main() {
     count_by_date_query=\
 "SELECT
