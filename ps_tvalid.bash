@@ -47,7 +47,7 @@ exec_prod_db() {
         -u $prod_user $prod_db \
         -p"$prod_pass" \
         -h $prod_host \
-        -P $prod_password \
+        -P $prod_port \
         -e "$1"
 }
 
@@ -86,7 +86,7 @@ exec_slave_db() {
         -u $slave_user $slave_db \
         -p"$slave_pass" \
         -h $slave_host \
-        -P $slave_password \
+        -P $slave_port \
         -e "$2"
 }
 
