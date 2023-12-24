@@ -105,6 +105,13 @@ WHERE created_date BETWEEN $from_date AND $to_date
 GROUP BY created_date;"
 
     prod_res=$(exec_prod_db "$count_by_date_query")
+
+    if [ "$?" = '1' ]
+    then
+        >&2 echo '...failed to execute prod query'
+        return 1
+    fi
+
     slave_res=()
 
     for slave_str in "${slaves[@]}"
