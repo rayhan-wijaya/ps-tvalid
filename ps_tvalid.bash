@@ -43,12 +43,12 @@ then
 fi
 
 exec_prod_db() {
-    mariadb
-        -u $prod_user
-        -p"$prod_pass"
-        -d $prod_db
-        -h $prod_host
-        -P $prod_password
+    mariadb \
+        -u $prod_user \
+        -p"$prod_pass" \
+        -d $prod_db \
+        -h $prod_host \
+        -P $prod_password \
         -e "$1"
 }
 
@@ -83,12 +83,12 @@ exec_slave_db() {
         esac
     done
 
-    mariadb
-        -u $slave_user
-        -p"$slave_pass"
-        -d $slave_db
-        -h $slave_host
-        -P $slave_password
+    mariadb \
+        -u $slave_user \
+        -p"$slave_pass" \
+        -d $slave_db \
+        -h $slave_host \
+        -P $slave_password \
         -e "$2"
 }
 
