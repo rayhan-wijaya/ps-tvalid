@@ -8,12 +8,12 @@ hash mariadb 2>/dev/null || {
 creds_path=$1
 if [ "$creds_path" = '' ]
 then
-    echo '...please provide $creds_path as $1--first argument'
+    echo >&2 '...please provide $creds_path as $1--first argument'
     exit 1
 fi
 if ! test -f "$creds_path"
 then
-    echo '...please provide $creds_path as a file that actually exists'
+    echo >&2 '...please provide $creds_path as a file that actually exists'
     exit 1
 fi
 
@@ -36,11 +36,13 @@ validate_creds() {
 }
 
 validate_creds_res="$(validate_creds)"
-echo "...creds.bash status: $validate_creds_res"
 if [ "$validate_creds_res" != "$validate_creds_ok" ]
 then
+    echo >&2 "...creds.bash status: $validate_creds_res"
     exit 1
 fi
+
+echo "...creds.bash status: $validate_creds_res"
 
 exec_prod_db() {
     mariadb \
