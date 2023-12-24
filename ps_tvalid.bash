@@ -65,19 +65,19 @@ exec_slave_db() {
     for i in "${!slave_creds[@]}"
     do
         case "$i" in
-            "0")
+            '0')
                 slave_user=${slave_creds[$i]}
                 ;;
-            "1")
+            '1')
                 slave_pass=${slave_creds[$i]}
                 ;;
-            "2")
+            '2')
                 slave_db=${slave_creds[$i]}
                 ;;
-            "3")
+            '3')
                 slave_host=${slave_creds[$i]}
                 ;;
-            "4")
+            '4')
                 slave_port=${slave_creds[$i]}
                 ;;
         esac
