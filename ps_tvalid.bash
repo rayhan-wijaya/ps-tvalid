@@ -107,7 +107,7 @@ main() {
     created_date,
     COUNT(*)
 FROM transactions
-WHERE created_date BETWEEN $from_date AND $to_date
+WHERE created_date BETWEEN '$from_date' AND '$to_date'
 GROUP BY created_date;"
 
     prod_res=$(exec_prod_db "$count_by_date_query")
