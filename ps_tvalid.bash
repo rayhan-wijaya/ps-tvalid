@@ -98,7 +98,7 @@ to_date=$3
 count_by_date_query=\
 "SELECT
     created_date,
-    count(*)
+    COUNT(*)
 FROM transactions
 WHERE created_date BETWEEN $from_date AND $to_date
 GROUP BY created_date;"
