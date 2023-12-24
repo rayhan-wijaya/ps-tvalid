@@ -109,7 +109,7 @@ GROUP BY created_date;"
 
     for slave_str in ${slaves[@]}
     do
-        slave_res += "$(exec_slave_db $count_by_date_query)"
+        slave_res += ("$(exec_slave_db $count_by_date_query)")
     done
 }
 
