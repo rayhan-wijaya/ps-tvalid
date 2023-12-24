@@ -114,9 +114,16 @@ GROUP BY created_date;"
 
     slave_res=()
 
-    for slave_str in "${slaves[@]}"
+    for slave_i in "${!slaves[@]}"
     do
-        res=$(exec_slave_db "$slave_str" "$count_by_date_query")
+        res=$(exec_slave_db "${slaves[$slave_i]}" "$count_by_date_query")
+
+        if [ "$?" = '1' ]
+        then
+            >&2 echo "...failed to execute query for slave at index '$slave_i'"
+            return 1
+        fi
+
         slave_res+=("$res")
     done
 }
