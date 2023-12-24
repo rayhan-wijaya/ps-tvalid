@@ -103,6 +103,14 @@ main() {
 FROM transactions
 WHERE created_date BETWEEN $from_date AND $to_date
 GROUP BY created_date;"
+
+    prod_res=$(exec_prod_db "$count_by_date_query")
+    slave_res=()
+
+    for slave_str in ${slaves[@]}
+    do
+        slave_res += "$(exec_slave_db $count_by_date_query)"
+    done
 }
 
 main
