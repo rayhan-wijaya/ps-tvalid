@@ -44,10 +44,10 @@ fi
 
 exec_prod_db() {
     mariadb \
-        -u $prod_user $prod_db \
+        -u "$prod_user" "$prod_db" \
         -p"$prod_pass" \
-        -h $prod_host \
-        -P $prod_port \
+        -h "$prod_host" \
+        -P "$prod_port" \
         -e "$1"
 }
 
@@ -83,10 +83,10 @@ exec_slave_db() {
     done
 
     mariadb \
-        -u $slave_user $slave_db \
+        -u "$slave_user" "$slave_db" \
         -p"$slave_pass" \
-        -h $slave_host \
-        -P $slave_port \
+        -h "$slave_host" \
+        -P "$slave_port" \
         -e "$2"
 }
 
