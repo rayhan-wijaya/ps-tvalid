@@ -118,7 +118,7 @@ GROUP BY created_date;"
     echo "Production" >> $out_file
     echo "----------" >> $out_file
 
-    echo $prod_res >> $out_file
+    echo "$prod_res" >> $out_file
     echo "" >> $out_file
 
     if [ "$?" = '1' ]
@@ -140,7 +140,7 @@ GROUP BY created_date;"
         echo "Slave $slave_i" >> $out_file
         echo "-------" >> $out_file
 
-        echo $res >> $out_file
+        echo "$res" >> $out_file
         echo "" >> $out_file
     done
 }
