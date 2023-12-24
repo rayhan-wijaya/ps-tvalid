@@ -8,12 +8,12 @@ hash mariadb 2>/dev/null || {
 creds_path=$1
 if [ "$creds_path" = '' ]
 then
-    echo >&2 '...please provide $creds_path as $1--first argument'
+    >&2 echo '...please provide $creds_path as $1--first argument'
     exit 1
 fi
 if ! test -f "$creds_path"
 then
-    echo >&2 '...please provide $creds_path as a file that actually exists'
+    >&2 echo '...please provide $creds_path as a file that actually exists'
     exit 1
 fi
 
@@ -38,7 +38,7 @@ validate_creds() {
 validate_creds_res="$(validate_creds)"
 if [ "$validate_creds_res" != "$validate_creds_ok" ]
 then
-    echo >&2 "...creds.bash status: $validate_creds_res"
+    >&2 echo "...creds.bash status: $validate_creds_res"
     exit 1
 fi
 
@@ -107,10 +107,10 @@ GROUP BY created_date;"
     prod_res=$(exec_prod_db "$count_by_date_query")
     slave_res=()
 
-    for slave_str in ${slaves[@]}
+    for slave_str in "${slaves[@]}"
     do
         res=$(exec_slave_db "$slave_str" "$count_by_date_query")
-        $slave_res += "$res"
+        slave_res+=("$res")
     done
 }
 
