@@ -44,9 +44,8 @@ fi
 
 exec_prod_db() {
     mariadb \
-        -u $prod_user \
+        -u $prod_user $prod_db \
         -p"$prod_pass" \
-        -d $prod_db \
         -h $prod_host \
         -P $prod_password \
         -e "$1"
@@ -84,9 +83,8 @@ exec_slave_db() {
     done
 
     mariadb \
-        -u $slave_user \
+        -u $slave_user $slave_db \
         -p"$slave_pass" \
-        -d $slave_db \
         -h $slave_host \
         -P $slave_password \
         -e "$2"
