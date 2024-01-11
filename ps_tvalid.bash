@@ -96,13 +96,20 @@ from_date=$2
 to_date=$3
 
 out_file=$4
-> $out_file
 
 if [ "$from_date" = '' ] || [ "$to_date" = '' ]
 then
     >&2 echo '...please pass in $from_date and $to_date as $2 and $3'
     exit 1
 fi
+
+if [ "$out_file" = '' ]
+then
+    >&2 echo '...please pass in $out_file as $4'
+    exit 1
+fi
+
+> $out_file
 
 main() {
     count_by_date_query=\
