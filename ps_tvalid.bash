@@ -96,7 +96,6 @@ from_date=$2
 to_date=$3
 
 out_file=$4
-> $out_file
 
 if [ "$from_date" = '' ] || [ "$to_date" = '' ]
 then
@@ -108,6 +107,14 @@ fi
 #
 table=''
 date_col=''
+
+if [ "$out_file" = '' ]
+then
+    >&2 echo '...please pass in $out_file as $4'
+    exit 1
+fi
+
+> $out_file
 
 main() {
     count_by_date_query=\
