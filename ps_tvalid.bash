@@ -104,14 +104,19 @@ then
     exit 1
 fi
 
+# ...Fill this in:
+#
+table=''
+date_col=''
+
 main() {
     count_by_date_query=\
 "SELECT
-    created_date,
+    $date_col,
     COUNT(*)
-FROM transactions
-WHERE created_date BETWEEN '$from_date' AND '$to_date'
-GROUP BY created_date;"
+FROM $table
+WHERE $date_col BETWEEN '$from_date' AND '$to_date'
+GROUP BY $date_col;"
 
     prod_res=$(exec_prod_db "$count_by_date_query")
 
